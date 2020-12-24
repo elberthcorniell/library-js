@@ -25,7 +25,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Add new book</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close" id="close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form id="form">
@@ -42,13 +42,13 @@
     <script src="./src/js/index.js"></script>
     <script>
         function newBook(e) {
-            console.log(e)
             e.preventDefault()
             title = document.getElementById("title").value
             author = document.getElementById("author").value
             gender = document.getElementById("gender").value
             new Book(title, author, gender).addBookToLibrary()
             renderBooks()
+            document.getElementById('close').click()
         }
         const form = document.getElementById('form');
         form.addEventListener('submit', newBook);
@@ -68,15 +68,30 @@
                 title.innerHTML = book.title
 
                 author = document.createElement('p')
-                author.innerHTML = book.author
+                author.innerHTML = `Author: ${book.author}`
+
+                gender = document.createElement('p')
+                gender.innerHTML = `Gender: ${book.gender}`
+
+                read = document.createElement('strong')
+                read.innerHTML = `Read: ${book.read ? 'yes' : 'no'}`
+
+                
+                buttonRead = document.createElement('button')
+                buttonRead.className = 'btn btn-success '
+                buttonRead.innerHTML = `Set as ${book.read ? 'un' : ''}read`
+                buttonRead.onclick = () => toggleReadWithIndex(index, renderBooks)
 
                 button = document.createElement('button')
                 button.className = 'btn btn-danger'
                 button.innerHTML = 'Delete'
                 button.onclick = () => deleteWithIndex(index, renderBooks)
-
+                
                 card.appendChild(title)
                 card.appendChild(author)
+                card.appendChild(gender)
+                card.appendChild(read)
+                card.appendChild(buttonRead)
                 card.appendChild(button)
                 column.appendChild(card)
 

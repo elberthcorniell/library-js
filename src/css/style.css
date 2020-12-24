@@ -15,6 +15,10 @@ input {
     height: fit-content;
 }
 
+.btn-success {
+    margin: 10px 0;
+}
+
 .col-4 {
     margin-bottom: 20px;
 }

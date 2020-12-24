@@ -1,13 +1,20 @@
-let myLibrary = [];
+let myLibrary = getBooks();
 
-function Book(title, author, gender) {
+function Book(title, author, gender, read = false) {
     this.title = title
     this.author = author
     this.gender = gender
+    this.read = read
 }
 
 Book.prototype.addBookToLibrary = function () {
     myLibrary.push(this)
+    setBooks()
+}
+
+Book.prototype.toggleRead = function () {
+    this.read = !this.read
+    return this
 }
 
 function mapBooks(callback) {
@@ -17,11 +24,23 @@ function mapBooks(callback) {
 }
 
 function deleteWithIndex(index, callback) {
-    console.log(index)
     myLibrary.splice(index, 1)
     callback && callback()
+    setBooks()
 }
 
-new Book('Magic Kingdom', 'idk', 'magic').addBookToLibrary()
-new Book('Magic Kingdom 1', 'idk', 'magic').addBookToLibrary()
-new Book('Magic Kingdom 2', 'idk', 'magic').addBookToLibrary()
+function toggleReadWithIndex(index, callback) {
+    myLibrary[index] = myLibrary[index].toggleRead()
+    callback && callback()
+    setBooks()
+}
+
+function getBooks() {
+    data = localStorage.getItem('myLibrary')
+    return JSON.parse(data) || []
+}
+
+function setBooks() {
+    data = JSON.stringify(myLibrary)
+    localStorage.setItem('myLibrary', data)
+}
