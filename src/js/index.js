@@ -39,9 +39,13 @@ function toggleReadWithIndex(index, callback) {
 function getBooks() {
   let data = localStorage.getItem('myLibrary');
   data = JSON.parse(data);
-  result = [];
+  let result = [];
   data.map(book => {
-    const { title, author, gender, read } = book;
+    const {
+      title,
+      author,
+      gender,
+      read } = book;
     result.push(new Book(title, author, gender, read));
     return true;
   });
@@ -49,7 +53,7 @@ function getBooks() {
 }
 
 function setBooks() {
-  data = JSON.stringify(myLibrary);
+  const data = JSON.stringify(myLibrary);
   localStorage.setItem('myLibrary', data);
 }
 
