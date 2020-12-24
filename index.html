@@ -25,7 +25,8 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Add new book</h5>
-                    <button type="button" class="btn-close" id="close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close" id="close" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form id="form">
@@ -58,39 +59,40 @@
         function renderBooks() {
             books.innerHTML = ''
             mapBooks((book, index) => {
+                let { title, author, gender, read } = book
                 column = document.createElement('div')
                 column.className = 'col-4'
 
                 card = document.createElement('div')
                 card.className = 'card card-body'
 
-                title = document.createElement('strong')
-                title.innerHTML = book.title
+                titleElement = document.createElement('strong')
+                titleElement.innerHTML = title
 
-                author = document.createElement('p')
-                author.innerHTML = `Author: ${book.author}`
+                authorElement = document.createElement('p')
+                authorElement.innerHTML = `Author: ${author}`
 
-                gender = document.createElement('p')
-                gender.innerHTML = `Gender: ${book.gender}`
+                genderElement = document.createElement('p')
+                genderElement.innerHTML = `Gender: ${gender}`
 
-                read = document.createElement('strong')
-                read.innerHTML = `Read: ${book.read ? 'yes' : 'no'}`
+                readElement = document.createElement('strong')
+                readElement.innerHTML = `Read: ${read ? 'yes' : 'no'}`
 
-                
+
                 buttonRead = document.createElement('button')
                 buttonRead.className = 'btn btn-success '
-                buttonRead.innerHTML = `Set as ${book.read ? 'un' : ''}read`
+                buttonRead.innerHTML = `Set as ${read ? 'un' : ''}read`
                 buttonRead.onclick = () => toggleReadWithIndex(index, renderBooks)
 
                 button = document.createElement('button')
                 button.className = 'btn btn-danger'
                 button.innerHTML = 'Delete'
                 button.onclick = () => deleteWithIndex(index, renderBooks)
-                
-                card.appendChild(title)
-                card.appendChild(author)
-                card.appendChild(gender)
-                card.appendChild(read)
+
+                card.appendChild(titleElement)
+                card.appendChild(authorElement)
+                card.appendChild(genderElement)
+                card.appendChild(readElement)
                 card.appendChild(buttonRead)
                 card.appendChild(button)
                 column.appendChild(card)
