@@ -1,11 +1,11 @@
-let myLibrary = []
+let myLibrary = [];
 
 function Book(title, author, gender, read = false) {
   this.title = title;
   this.author = author;
   this.gender = gender;
   this.read = read;
-};
+}
 
 Book.prototype.addBookToLibrary = function () {
   myLibrary.push(this);

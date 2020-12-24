@@ -14,7 +14,10 @@
     "no-shadow": "off",
     "no-param-reassign": "off",
     "eol-last": "off",
-    "arrow-parens": "off"
+    "arrow-parens": "off",
+    "no-unused-vars": "off",
+    "no-unused-expressions": "off",
+    "no-use-before-define": "off"
   },
   "ignorePatterns": [
     "dist/",
