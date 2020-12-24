@@ -1,10 +1,11 @@
 let myLibrary = [];
 
-function Book(title, author, gender, read = false) {
+function Book(title, author, gender, pages, read = false) {
   this.title = title;
   this.author = author;
   this.gender = gender;
   this.read = read;
+  this.pages = pages;
 }
 
 Book.prototype.addBookToLibrary = function () {
@@ -46,8 +47,9 @@ function getBooks() {
       author,
       gender,
       read,
+      pages,
     } = book;
-    result.push(new Book(title, author, gender, read));
+    result.push(new Book(title, author, gender, pages, read));
     return true;
   });
   return result;

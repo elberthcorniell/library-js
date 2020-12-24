@@ -30,9 +30,12 @@
                 </div>
                 <div class="modal-body">
                     <form id="form">
-                        <input class="form-control" type="text" id="title" placeholder="title">
-                        <input class="form-control" type="text" id="author" placeholder="author">
-                        <input class="form-control" type="text" id="gender" placeholder="gender">
+                        <input required class="form-control" type="text" id="title" placeholder="title">
+                        <input required class="form-control" type="text" id="author" placeholder="author">
+                        <input required class="form-control" type="text" id="gender" placeholder="gender">
+                        <input required class="form-control" type="number" id="pages" placeholder="Num of pages">
+                        <label for="read">Read:</label>
+                        <input type="checkbox" id="read">
                         <input class="btn btn-success" type="submit">
 
                     </form>
@@ -47,7 +50,9 @@
             title = document.getElementById("title").value
             author = document.getElementById("author").value
             gender = document.getElementById("gender").value
-            new Book(title, author, gender).addBookToLibrary()
+            pages = document.getElementById("pages").value
+            read = document.getElementById("read").checked
+            new Book(title, author, gender, pages, read).addBookToLibrary()
             renderBooks()
             document.getElementById('close').click()
         }
@@ -59,7 +64,7 @@
         function renderBooks() {
             books.innerHTML = ''
             mapBooks((book, index) => {
-                let { title, author, gender, read } = book
+                let { title, author, gender, pages, read } = book
                 column = document.createElement('div')
                 column.className = 'col-4'
 
@@ -74,6 +79,9 @@
 
                 genderElement = document.createElement('p')
                 genderElement.innerHTML = `Gender: ${gender}`
+                
+                pagesElement = document.createElement('p')
+                pagesElement.innerHTML = `Pages: ${pages}`
 
                 readElement = document.createElement('strong')
                 readElement.innerHTML = `Read: ${read ? 'yes' : 'no'}`
@@ -92,6 +100,7 @@
                 card.appendChild(titleElement)
                 card.appendChild(authorElement)
                 card.appendChild(genderElement)
+                card.appendChild(pagesElement)
                 card.appendChild(readElement)
                 card.appendChild(buttonRead)
                 card.appendChild(button)
