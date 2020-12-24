@@ -1,3 +1,5 @@
+let myLibrary = []
+
 function Book(title, author, gender, read = false) {
   this.title = title;
   this.author = author;
@@ -49,4 +51,4 @@ function setBooks() {
   localStorage.setItem('myLibrary', data);
 }
 
-let myLibrary = getBooks();
+myLibrary = getBooks();
