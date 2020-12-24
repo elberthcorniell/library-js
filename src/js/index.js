@@ -39,13 +39,15 @@ function toggleReadWithIndex(index, callback) {
 function getBooks() {
   let data = localStorage.getItem('myLibrary');
   data = JSON.parse(data);
-  let result = [];
+  let result;
+  result = [];
   data.map(book => {
     const {
       title,
       author,
       gender,
-      read } = book;
+      read 
+    } = book;
     result.push(new Book(title, author, gender, read));
     return true;
   });
