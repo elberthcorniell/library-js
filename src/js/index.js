@@ -5,17 +5,17 @@ function Book(title, author, gender, read = false) {
   this.author = author;
   this.gender = gender;
   this.read = read;
-}
+};
 
 Book.prototype.addBookToLibrary = function () {
   myLibrary.push(this);
   setBooks();
-}
+};
 
 Book.prototype.toggleRead = function () {
   this.read = !this.read;
   return this;
-}
+};
 
 function mapBooks(callback) {
   myLibrary.map((book, index) => {
