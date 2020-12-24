@@ -20,6 +20,7 @@ Book.prototype.toggleRead = function () {
 function mapBooks(callback) {
   myLibrary.map((book, index) => {
     callback && callback(book, index);
+    return true;
   });
 }
 
@@ -36,12 +37,13 @@ function toggleReadWithIndex(index, callback) {
 }
 
 function getBooks() {
-  data = localStorage.getItem('myLibrary');
+  let data = localStorage.getItem('myLibrary');
   data = JSON.parse(data);
   result = [];
   data.map(book => {
-    let { title, author, gender, read } = book;
+    const { title, author, gender, read } = book;
     result.push(new Book(title, author, gender, read));
+    return true;
   });
   return result;
 }
